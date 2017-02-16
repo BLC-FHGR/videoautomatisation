@@ -1,0 +1,4 @@
+Shorten movie sequence with ffmpeg
+
+ffmpeg -i cameraVoip_0_4.flv -ss 00:00:00 -t 00:01:02 -vcodec copy -acodec copy cameravoip.flv
+ffmpeg -i screenshare_1_2.flv -ss 00:00:00 -t 00:01:02 -vcodec copy -acodec copy screenshare.flv

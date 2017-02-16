@@ -1,0 +1,68 @@
+
+/*
+var firstFile = "outputfiles/vid1.mp4";
+var secondFile = "outputfiles/vid5.mp4";
+var outPath = "outputfiles/out.mp4";
+
+var proc = ffmpeg(firstFile)
+    .input(secondFile)
+
+    .on('end', function() {
+      console.log('files have been merged succesfully');
+    })
+    .on('error', function(err) {
+      console.log('an error happened: ' + err.message);
+    })
+    .addOption('-filter_complex', '[0:v][1:v]hstack=inputs=2[v]');
+/*    .outputOptions([
+	  '-map "[v]" ',
+	  '-map 0:a',
+	  '-c:a copy',
+	]);
+    .save("/"+outPath);
+
+/*
+var ffmpeg = require('fluent-ffmpeg');
+
+var proc = new ffmpeg({
+  // input source, required
+  source: '/path/to/your_movie.avi',
+  // timout of the spawned ffmpeg sub-processes in seconds (optional, defaults to 30)
+  timeout: 30,
+  // default priority for all ffmpeg sub-processes (optional, defaults to 0 which is no priorization)
+  priority: 0,
+  // set a custom [winston](https://github.com/flatiron/winston) logging instance (optional, default null which will cause fluent-ffmpeg to spawn a winston console logger)
+  logger: null,
+  // completely disable logging (optional, defaults to false)
+  nolog: false
+});
+
+//proc.addOption('-filter_complex', '[0:v]pad=iw*2:ih[bg];[bg][0:v]overlay=W/2');
+
+
+
+var ffmpeg = require('fluent-ffmpeg');
+
+var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
+  .withAspect('4:3')
+  .withSize('640x480')
+  .applyAutopadding(true, 'white')
+  .saveToFile('/path/to/your_target.avi', function(stdout, stderr) {
+    console.log('file has been converted succesfully');
+  });
+
+
+
+
+
+  /* videostuff
+
+var proc = new ffmpeg({ source: 'outputfiles/vid5.mp4' })
+  .withAspect('4:3')
+  .withSize('640x480')
+  .applyAutopadding(true, 'white')
+  .saveToFile('outputfiles/new_output/blablabla.mp4', function(stdout, stderr) {
+    console.log('file has been converted succesfully');
+  });
+
+  

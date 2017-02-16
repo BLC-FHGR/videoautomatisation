@@ -1,0 +1,47 @@
+<!--This is the opening comment-->
+<root>
+    <Signature><![CDATA[FLV]]></Signature>
+    <Version><![CDATA[1]]></Version>
+    <Flag><![CDATA[data]]></Flag>
+    <DataPos><![CDATA[9]]></DataPos>
+    <Message time="0" type="data">
+        <Method><![CDATA[onMetaData]]></Method>
+        <Array>
+            <Number><![CDATA[5771.009000]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <String><![CDATA[false]]></String>
+            <String><![CDATA[AMS 5]]></String>
+            <String><![CDATA[Mon Jan 16 10:14:07 2017]]></String>
+        </Array>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__start__]]></String>
+        <Number><![CDATA[9]]></Number>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <iconType><![CDATA[camera]]></iconType>
+            <label><![CDATA[Benutzer [Blended Learning Center] ist beigetreten]]></label>
+            <name><![CDATA[]]></name>
+            <time><![CDATA[29]]></time>
+        </Object>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <iconType><![CDATA[roomLayoutChanged]]></iconType>
+            <label><![CDATA[BSP_V+P]]></label>
+            <name><![CDATA[]]></name>
+            <time><![CDATA[50]]></time>
+        </Object>
+    </Message>
+    <Message time="5771009" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__stop__]]></String>
+    </Message>
+
+    <!--This is a closing comment-->
+</root>

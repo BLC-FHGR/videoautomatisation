@@ -1,0 +1,60 @@
+ffmpeg-examples.txt
+
+ffmpeg -i screenshare_1_23_001.mp4 -i cameraVoip_0_43_001.mp4 -filter_complex "[1]scale=iw/5:ih/5 [pip]; [0][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -ar 44100 -ab 128k -s 720x400 -vcodec h264 -acodec PIP_output1.mp4
+
+ffmpeg -i vid1.mp4 -i vid2.mp4 -i vid3.mp4 -i vid4.mp4 -filter_complex "nullsrc=size=640x480 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft]; [3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2]; [tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3]; [tmp3][lowerright] overlay=shortest=1:x=320:y=240" -c:v libx264 output.mkv
+
+
+ffmpeg -i vid1.mp4 -i vid2.mp4 -filter_complex "nullsrc=size=640x240 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2];" -c:v libx264 output2.mkv
+ffmpeg -i vid1.mp4 -i vid2.mp4 -filter_complex "nullsrc=size=640x240 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2];" -c:v libx264 output2.mkv
+
+ffmpeg -i vid1.mp4 -i vid2.mp4 -filter_complex "[0:v], scale=320x240; [1:v], scale=320x240; hstack=inputs=2[v]" -map "[v]" output2.mp4
+
+ffmpeg -i vid1.mp4 -i vid2.mp4 -filter_complex '[0:v]pad=iw*2:ih[int];[int][1:v]overlay=W/2:0[vid]' -map [vid] -c:v libx264 -crf 23 -preset veryfast output3.mp4
+
+ffmpeg -i vid2.mp4 -vf scale=iw*3.2:ih*3.2 vid5.mp4
+ffmpeg -i vid1.mp4 -i vid2.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]" -map "[v]" output4.mp4
+
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]; [0:a][1:a]amerge[a]" -map "[v]" -map "[a]" -ac 2 output6.mp4
+ffmpeg -i left.mp4 -i right.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]; [0:a][1:a]amerge[a]" -map "[v]" -map "[a]" -ac 1 output.mp4
+
+
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]; [0:a][1:a]amerge[a]" -map "[v]" output6.mp4
+
+-codec copy
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]" -map "[v]" -codec copy output7.mp4
+
+
+ffmpeg -i pipInput1.flv -i pipInput2.flv -filter_complex "[1]scale=iw/5:ih/5 [pip]; [0][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -ar 44100 -ab 128k -s 720x400 -vcodec h264 -acodec libfaac PIP_output1.mp4
+
+
+-acodec libfaac
+
+
+WORKING 
+
+
+
+
+//screenshare in camera rechts unten
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex "[1]scale=iw/3:ih/3 [pip]; [0][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -ar 44100 -ab 128k -s 720x400 -vcodec h264 -acodec aac -strict experimental PIP_output2.mp4
+//camera in Screenshare rechts unten
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex  "[0]scale=iw/3:ih/3 [pip]; [1][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -ar 44100 -ab 128k -s 720x400 -vcodec h264 -acodec aac -strict experimental PIP_output3.mp4
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex  "[0]scale=iw/3:ih/3 [pip]; [1][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -s 720x400 -vcodec h264 -map 0:a -c:a copy PIP_output3.mp4
+
+//zwei nebeneinander, gleich gross
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex "[0:v][1:v]hstack=inputs=2[v]" -map "[v]" -map 0:a -c:a copy output11.mp4
+
+
+
+
+ffmpeg -i vid5.mp4 -i vid1.mp4 -filter_complex  "[0]scale=iw/3:ih/3 [pip]; [1][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -s 720x400 -vcodec h264 -map 0:a -c:a copy PIP_output14.mp4
+
+
+
+/*
+
+ffmpeg -i screenshare_1_2.flv -vf "movie=cameraVoip_0_4.flv[inner]; [in][inner] overlay=70:70 [out]" completed.mp4
+
+ffmpeg -i screenshare_1_2.flv -i cameraVoip_0_4.flv -filter_complex  "[0]scale=iw/3:ih/3 [pip]; [1][pip] overlay=main_w-overlay_w-10:main_h-overlay_h-10" -profile:v main -level 3.1 -b:v 440k -s 720x400 -vcodec h264 -map 0:a -c:a copy PIP_output14.mp4
+*/

@@ -1,0 +1,106 @@
+<!--This is the opening comment-->
+<root>
+    <Signature><![CDATA[FLV]]></Signature>
+    <Version><![CDATA[1]]></Version>
+    <Flag><![CDATA[data]]></Flag>
+    <DataPos><![CDATA[9]]></DataPos>
+    <Message time="0" type="data">
+        <Method><![CDATA[onMetaData]]></Method>
+        <Array>
+            <Number><![CDATA[5768.859000]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <String><![CDATA[false]]></String>
+            <String><![CDATA[AMS 5]]></String>
+            <String><![CDATA[Mon Jan 16 10:14:07 2017]]></String>
+        </Array>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__start__]]></String>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[13]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[27]]></time>
+        </Object>
+        <String><![CDATA[addVideo]]></String>
+        <String><![CDATA[2]]></String>
+        <String><![CDATA[cameraVoip_0]]></String>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[14]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[28]]></time>
+        </Object>
+        <String><![CDATA[updateVideoPauseStatus]]></String>
+        <String><![CDATA[2]]></String>
+        <String><![CDATA[false]]></String>
+        <String><![CDATA[cameraVoip_0]]></String>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[15]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[28]]></time>
+        </Object>
+        <String><![CDATA[updateCameraPublishWidthAndHeightForUser]]></String>
+        <String><![CDATA[2]]></String>
+        <Number><![CDATA[432]]></Number>
+        <Number><![CDATA[240]]></Number>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[16]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[29]]></time>
+        </Object>
+        <String><![CDATA[__registerSo__]]></String>
+        <Array>
+            <Object>
+                <soEventName><![CDATA[setMainVideoFeedSo]]></soEventName>
+                <soName><![CDATA[public/all/4_videoPodNonPersistent]]></soName>
+                <soPersist><![CDATA[false]]></soPersist>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[17]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[30]]></time>
+        </Object>
+        <String><![CDATA[setMainVideoFeedSo]]></String>
+        <Array>
+            <Object>
+                <code><![CDATA[change]]></code>
+                <name><![CDATA[room_0]]></name>
+                <newValue><![CDATA[2]]></newValue>
+                <oldValue><![CDATA[]]></oldValue>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="5768859" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[4194]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[5768881]]></time>
+        </Object>
+        <String><![CDATA[removeVideo]]></String>
+        <String><![CDATA[2]]></String>
+    </Message>
+    <Message time="5768859" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__stop__]]></String>
+    </Message>
+
+    <!--This is a closing comment-->
+</root>

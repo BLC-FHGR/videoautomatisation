@@ -1,0 +1,135 @@
+<!--This is the opening comment-->
+<root>
+    <Signature><![CDATA[FLV]]></Signature>
+    <Version><![CDATA[1]]></Version>
+    <Flag><![CDATA[data]]></Flag>
+    <DataPos><![CDATA[9]]></DataPos>
+    <Message time="0" type="data">
+        <Method><![CDATA[onMetaData]]></Method>
+        <Array>
+            <Number><![CDATA[5768.883000]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <Number><![CDATA[0]]></Number>
+            <String><![CDATA[false]]></String>
+            <String><![CDATA[AMS 5]]></String>
+            <String><![CDATA[Mon Jan 16 10:14:07 2017]]></String>
+        </Array>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__start__]]></String>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[0]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[8]]></time>
+        </Object>
+        <String><![CDATA[setHistory6]]></String>
+        <Array><![CDATA[]]></Array>
+        <String><![CDATA[true]]></String>
+        <Number><![CDATA[3600000]]></Number>
+        <String><![CDATA[]]></String>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[1]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[8]]></time>
+        </Object>
+        <String><![CDATA[__registerSo__]]></String>
+        <Array>
+            <Object>
+                <soEventName><![CDATA[setTypingStatus]]></soEventName>
+                <soName><![CDATA[public/all/22_typing]]></soName>
+                <soPersist><![CDATA[false]]></soPersist>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="0" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[2]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[9]]></time>
+        </Object>
+        <String><![CDATA[setTypingStatus]]></String>
+        <Array><![CDATA[]]></Array>
+    </Message>
+    <Message time="300017" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[243]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[300023]]></time>
+        </Object>
+        <String><![CDATA[setTypingStatus]]></String>
+        <Array>
+            <Object>
+                <code><![CDATA[delete]]></code>
+                <name><![CDATA[3]]></name>
+                <newValue><![CDATA[]]></newValue>
+                <oldValue><![CDATA[]]></oldValue>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="3850428" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[2990]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[3850434]]></time>
+        </Object>
+        <String><![CDATA[setTypingStatus]]></String>
+        <Array>
+            <Object>
+                <code><![CDATA[delete]]></code>
+                <name><![CDATA[4]]></name>
+                <newValue><![CDATA[]]></newValue>
+                <oldValue><![CDATA[]]></oldValue>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="4175207" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[3212]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[4175213]]></time>
+        </Object>
+        <String><![CDATA[setTypingStatus]]></String>
+        <Array>
+            <Object>
+                <code><![CDATA[delete]]></code>
+                <name><![CDATA[5]]></name>
+                <newValue><![CDATA[]]></newValue>
+                <oldValue><![CDATA[]]></oldValue>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="4950847" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <Object>
+            <id><![CDATA[3738]]></id>
+            <name><![CDATA[playEvent]]></name>
+            <time><![CDATA[4950853]]></time>
+        </Object>
+        <String><![CDATA[setTypingStatus]]></String>
+        <Array>
+            <Object>
+                <code><![CDATA[delete]]></code>
+                <name><![CDATA[6]]></name>
+                <newValue><![CDATA[]]></newValue>
+                <oldValue><![CDATA[]]></oldValue>
+            </Object>
+        </Array>
+    </Message>
+    <Message time="5768883" type="data">
+        <Method><![CDATA[playEvent]]></Method>
+        <String><![CDATA[__stop__]]></String>
+    </Message>
+
+    <!--This is a closing comment-->
+</root>
