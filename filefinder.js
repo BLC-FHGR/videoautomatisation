@@ -22,12 +22,7 @@ function fileFinder(startPath, filter) {
     // For files we want to ignore, map() just creates an empty array,
     // because the array.concat([]) is just the original array. Thus, the
     // empty arrays just disappear during the reduce function.
-    //
-    // The reduce function uses the trick, that array.concat() can be called
-    // with undefined values without harm. The side effect is that our
-    // resulting array is reversed. In our case this is no problem, in
-    // cases ordering is relevant, then we must use reduceRight().
-
+    // 
     // map reduce through the directories the node style with Promises.
     // Using promises allows multi access storages to respond much faster than
     // with sequential processing.
@@ -75,7 +70,7 @@ function fileFinder(startPath, filter) {
     })
     .then(results => {
         // once all results are present, reduce the results into a flat array
-        return results.reduce((acc, list) => { return list.concat(acc); });
+        return results.reduce((acc, list) => { return list.concat(acc); }, []);
     });
 }
 
