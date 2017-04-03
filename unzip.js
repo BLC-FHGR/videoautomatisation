@@ -1,10 +1,10 @@
-const fs         = require('fs');
-const unzip      = require('unzip2');
-const ffmpeg     = require('fluent-ffmpeg');
-const path       = require('path');
-const fileFinder = require('./filefinder');
+const fs         = require("fs");
+const unzip      = require("unzip2");
+const ffmpeg     = require("fluent-ffmpeg");
+const path       = require("path");
+const fileFinder = require("./filefinder");
 
-const dir = './tmp';                                  // unused?
+//const dir = "./tmp";                                  // unused?
 
 /*
 1: Find Zip Files
@@ -24,15 +24,16 @@ const dir = './tmp';                                  // unused?
 // function (someparam, otherparam) { ... /* code */ ... }
 //
 fileFinder("input/", "zip")                                                // 1
-.then(filelist => {
+    .then(filelist => {
     // create a separate processing chain for each zip file we find.
     // Again we split the process into different threads.
     //
     // The all-Promise collects the results of the conversion process
-    return Promise.all(filelist.map( filename => {
-        var tFN = filename.split(".");
-        tFN.pop();
-        const dirname = tFN.join('.');
+        return Promise.all(filelist.map( filename => {
+            var tFN = filename.split(".");
+
+            tFN.pop();
+            const dirname = tFN.join(".");
 
         // Now we create a separate processing pipeline for each file that we
         // found.
@@ -48,14 +49,17 @@ fileFinder("input/", "zip")                                                // 1
         // each pipeline is quite computation intense, so if we have multiple
         // files, we want to use as many CPU cores as possible.
         //
-        return new Promise(function (resolve, reject) {                    // 2
-            fs
-                .createReadStream(filename)
-                .pipe(unzip.Extract({ path: path.dirname(filename) }))
-                .on('close', function() {
-                    resolve(dirname);
-                });
-        })
+            return new Promise(function (resolve, reject) {                    // 2
+                fs
+                    .createReadStream(filename)
+                    .pipe(unzip.Extract({ path: path.dirname(filename) }))
+                    .on("close", function() {
+                        resolve(dirname);
+                    })
+                    .on("error", function (error) {
+                        reject(error);
+                    });
+            })
         //                                                                 // 3
         // as soon a zip is extracted, we start processing the files
         // this happens in 3 steps
@@ -63,7 +67,7 @@ fileFinder("input/", "zip")                                                // 1
         // B. build a stitching script using the FFMPEG options
         // C. run ffmpeg
         //
-        .then(videoDirName => {                                            // A
+                .then(videoDirName => {                                            // A
             // FIXME we really want a config file for the videos.
             //
             // Ideally, we would process the mainstream.xml because all
@@ -88,60 +92,64 @@ fileFinder("input/", "zip")                                                // 1
             //
             // for the time being, create a very basic configuration file
             // without parsing anything
-            return {
-                firstFile: path.join(videoDirName, "cameravoip2.flv"),
-                secondFile: path.join(videoDirName, "screenshare2.flv"),
-                output: videoDirName + ".mp4"
-            };
-        })
+                    return {
+                        firstFile: path.join(videoDirName, "cameravoip2.flv"),
+                        secondFile: path.join(videoDirName, "screenshare2.flv"),
+                        output: videoDirName + ".mp4"
+                    };
+                })
         //
         // create the stitching script
         //
-        .then(videoConfig => {                                              // B
-            const processor = ffmpeg(videoConfig.firstFile)
+                .then(videoConfig => {                                              // B
+                    const processor = ffmpeg(videoConfig.firstFile)
                 .input(videoConfig.secondFile)
                 .complexFilter([
-                    '[0:v]scale=320:180[0scaled]',
-                    '[1:v]scale=1024:768[1scaled]',
-                    '[0scaled]pad=1280:720[0padded]',
-                    '[0padded][1scaled]overlay=shortest=1:x=290[output]'
+                    "[0:v]scale=320:180[0scaled]",
+                    "[1:v]scale=1024:768[1scaled]",
+                    "[0scaled]pad=1280:720[0padded]",
+                    "[0padded][1scaled]overlay=shortest=1:x=290[output]"
                 ])
                 .outputOptions([
-                    '-map [output]',
-                    '-map 0:a'
+                    "-map [output]",
+                    "-map 0:a"
                 ])
                 .output(videoConfig.output);
 
             // add the script to our configuration.
 
-            videoConfig.processor = processor;
-            return videoConfig;
-        })
+                    videoConfig.processor = processor;
+                    return videoConfig;
+                })
         //
         // process the stitching script
         //
-        .then(videoConfig => {                                            // C
-            return new Promise(function (resolve, reject) {
-                videoConfig.processor
-                    .on("error",function(err){
-                        reject(err);
-                    })
-                    .on("end",function(){
+                .then(videoConfig => {                                            // C
+                    return new Promise(function (resolve, reject) {
+                        videoConfig.processor
+                            .on("error",function(err){
+                                reject(err);
+                            })
+                            .on("end",function(){
                         // strip the ffmpeg processor from the config
-                        delete videoConfig.processor;
+                                delete videoConfig.processor;
 
                         // if everything went smoothly we inform the core
                         // process that this process completed successfully
                         // and produced the output.
                         //
                         // we just pass the entire configuration.
-                        resolve(videoConfig);
-                    })
-                    .run();                                                // 4
-            });
-        });
+                                resolve(videoConfig);
+                            })
+                            .run();                                                // 4
+                    });
+                });
         // FIXME: cleanup the extracted files after processing
-    }));
-})
-.then(filelist => { console.log(filelist); })
-.catch(error   => { console.log(error); });
+        }));
+    })
+    .then(filelist => {
+        console.log(filelist);
+    })
+    .catch(error   => {
+        console.log(error);
+    });
