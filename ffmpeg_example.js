@@ -1,8 +1,9 @@
-var ffmpeg = require('fluent-ffmpeg');
+var ffmpeg = require("fluent-ffmpeg");
 /*
 var firstFile = "./outputfiles/PIP_output1.mp4";
 var secondFile = "./outputfiles/PIP_output2.mp4";
 var outPath = "output_new.mp4";
+
 
 var proc = ffmpeg(firstFile)
     .input(secondFile)
@@ -45,24 +46,24 @@ var proc = ffmpeg(firstFile)
 */
 var firstFile = "./input/videofile/cameravoip2.flv";
 var secondFile = "./input/videofile/screenshare2.flv";
-var outputFile = "output.mp4"
+var outputFile = "output.mp4";
 
 var proc = ffmpeg(firstFile)
 .input(secondFile)
 .complexFilter([
-  '[0:v]scale=256:144[0scaled]',
-  '[1:v]scale=1024:567[1scaled]',
-  '[0scaled]pad=1280:720[0padded]',
-  '[0padded][1scaled]overlay=shortest=1:x=200[output]'
+    "[0:v]scale=256:144[0scaled]",
+    "[1:v]scale=1024:567[1scaled]",
+    "[0scaled]pad=1280:720[0padded]",
+    "[0padded][1scaled]overlay=shortest=1:x=200[output]"
 ])
 .outputOptions([
-  '-map [output]'
+    "-map [output]"
 ])
 .output(outputFile)
 .on("error",function(er){
-  console.log("error occured: "+er.message);
+    console.log("error occured: " + er.message);
 })
 .on("end",function(){
-  console.log("success");
+    console.log("success");
 })
 .run();

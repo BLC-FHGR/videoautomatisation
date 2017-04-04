@@ -43,7 +43,7 @@
         "key-spacing": "error",
         "yoda": [
             "error",
-            "always"
+            "never"
         ],
         "array-bracket-spacing": [
             "error",
